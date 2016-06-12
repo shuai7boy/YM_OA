@@ -1,0 +1,36 @@
+﻿@model IQueryable<YMOA_Model.UserInfo>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+      @Html.ActionLink("添加", "Add", "UserInfo")
+        <table>
+            <tr>
+                <td>编号</td>
+                <td>姓名</td>
+                <td>性别</td>
+                <td>年龄</td>
+            </tr>
+            @foreach (var item in ViewData.Model)
+            {
+                <tr>
+                    <td>@item.UserId</td>
+                    <td>@item.UserName</td>
+                    <td>@(item.UserGender=="0"?"男":"女")</td>
+                    <td>@item.UserAge</td>
+                </tr>
+            }
+        </table>    
+     
+    </div>
+</body>
+</html>

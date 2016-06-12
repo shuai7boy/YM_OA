@@ -1,0 +1,60 @@
+﻿@model YMOA_Model.UserInfo
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>   
+    <script>
+        
+        function AddAfter(msg) {
+           
+            if (msg=="1") {
+                document.location.href = '@Url.Action("Index","UserInfo")';          
+            } else if(msg=="0") {
+                alert("添加失败!");
+            }
+            }
+      
+    </script>
+</head>
+<body>
+    <div>
+        <h3>添加用户信息</h3>
+       @using (Ajax.BeginForm("Add","UserInfo", new AjaxOptions() { OnSuccess = "AddAfter" }))
+       {
+        <table>
+           
+            <tr>
+                <td>姓名:</td>
+                <td>@Html.TextBoxFor(c => c.UserName)@Html.ValidationMessageFor(c => c.UserName)</td>
+            </tr>
+            <tr>
+                <td>年龄:</td>
+                <td>@Html.TextBoxFor(c => c.UserAge)@Html.ValidationMessageFor(c => c.UserAge)</td>
+            </tr>
+            <tr>
+                <td>性别:</td>
+                <td>
+                    <input type="radio" name="UserGender" value="0"/>男
+                    <input type="radio" name="UserGender" value="1"/>女
+                           @Html.ValidationMessageFor(c =>c.UserGender)</td>
+            </tr>
+            <tr><td><input type="submit" value="添加" id="btnAdd" /></td></tr>
+
+        </table>
+       }
+                
+        
+
+    </div>
+</body>
+</html>
